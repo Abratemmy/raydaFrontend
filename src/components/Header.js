@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Typography, AppBar, Button, CssBaseline, Toolbar, Container } from '@material-ui/core';
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
+import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import "./styles.css";
 import image from "../Assets/Image.svg";
 import roundImage from "../Assets/Content.svg";
@@ -8,6 +9,14 @@ import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
 import CircleIcon from '@mui/icons-material/Circle';
 
 function Header() {
+    const [click, setClick] = useState(false)
+
+    const handleClick = () => {
+        setTimeout(() => {
+            setClick(prev => !prev)
+        }, 400)
+
+    }
     return (
         <div>
             <CssBaseline />
@@ -50,7 +59,9 @@ function Header() {
                                     </div>
                                 </div>
                                 <div className='rightSession'>
-                                    <Button variant="contained"><ThumbUpOffAltIcon className='thumb' />Accept Invite</Button>
+                                    <Button variant="contained" onClick={handleClick}>
+                                        {click ? <ThumbUpIcon className='thumb liked' /> : <ThumbUpOffAltIcon className='thumb' />}Accept Invite
+                                    </Button>
                                 </div>
                             </Typography>
 
